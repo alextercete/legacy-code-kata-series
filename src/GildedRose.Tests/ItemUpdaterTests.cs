@@ -116,9 +116,9 @@ namespace GildedRose.Tests
             Assert.AreEqual(-2, item.SellIn);
         }
 
-        private void UpdateItem(Item item)
+        private static void UpdateItem(Item item)
         {
-            Program.UpdateQuality(new[] { item });
+            Item.UpdateItem(item);
         }
     }
 }

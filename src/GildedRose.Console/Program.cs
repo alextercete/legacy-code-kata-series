@@ -59,26 +59,40 @@ namespace GildedRose.Console
         {
             foreach (var item in items)
             {
-                var isBackstage = item.Name == "Backstage passes to a TAFKAL80ETC concert";
-                var isBrie = item.Name == "Aged Brie";
-                var isSulfuras = item.Name == "Sulfuras, Hand of Ragnaros";
+                Item.UpdateItem(item);
+            }
+        }
+    }
 
-                if (isBrie)
-                {
-                    UpdateAgeingItem(item);
-                }
-                else if (isBackstage)
-                {
-                    UpdateDesirableEventItem(item);
-                }
-                else if (isSulfuras)
-                {
-                    UpdateLegendaryItem(item);
-                }
-                else
-                {
-                    UpdatePerishableItem(item);
-                }
+    public class Item
+    {
+        public string Name { get; set; }
+
+        public int SellIn { get; set; }
+
+        public int Quality { get; set; }
+
+        public static void UpdateItem(Item item)
+        {
+            var isBackstage = item.Name == "Backstage passes to a TAFKAL80ETC concert";
+            var isBrie = item.Name == "Aged Brie";
+            var isSulfuras = item.Name == "Sulfuras, Hand of Ragnaros";
+
+            if (isBrie)
+            {
+                UpdateAgeingItem(item);
+            }
+            else if (isBackstage)
+            {
+                UpdateDesirableEventItem(item);
+            }
+            else if (isSulfuras)
+            {
+                UpdateLegendaryItem(item);
+            }
+            else
+            {
+                UpdatePerishableItem(item);
             }
         }
 
@@ -149,14 +163,5 @@ namespace GildedRose.Console
                 item.Quality = item.Quality - 1;
             }
         }
-    }
-
-    public class Item
-    {
-        public string Name { get; set; }
-
-        public int SellIn { get; set; }
-
-        public int Quality { get; set; }
     }
 }
