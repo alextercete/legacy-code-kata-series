@@ -2,10 +2,6 @@ namespace GildedRose.Console
 {
     public class DesirableEventItem : Item
     {
-        public string Name { get; set; }
-        public int SellIn { get; set; }
-        public int Quality { get; set; }
-
         public override void Update()
         {
             // Tickets are more valuable when an event is closer

@@ -2,11 +2,11 @@ namespace GildedRose.Console
 {
     public abstract class Item
     {
-        string Name { get; set; }
+        public string Name { get; set; }
 
-        int SellIn { get; set; }
+        public int SellIn { get; set; }
 
-        int Quality { get; set; }
+        public int Quality { get; set; }
 
         public abstract void Update();
 
