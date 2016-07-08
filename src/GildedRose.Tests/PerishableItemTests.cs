@@ -8,7 +8,7 @@ namespace GildedRose.Tests
         [Test]
         public void StandardItemShouldLowerQualityAndSellInByOne()
         {
-            var item = new PerishableItem { Name = "+5 Dexterity V333est", SellIn = 3, Quality = 6 };
+            var item = new PerishableItem { SellIn = 3, Quality = 6 };
 
             item.Update();
 
@@ -19,7 +19,7 @@ namespace GildedRose.Tests
         [Test]
         public void StandardItemShouldLowerQualityTwiceAsFastWhenSellInIsNegative()
         {
-            var item = new PerishableItem { Name = "+5 Dexterity Vest", SellIn = -2, Quality = 6 };
+            var item = new PerishableItem { SellIn = -2, Quality = 6 };
 
             item.Update();
 
@@ -30,7 +30,7 @@ namespace GildedRose.Tests
         [Test]
         public void StandardItemShouldLowerQualityTwiceAsFastWhenSellInIsZero()
         {
-            var item = new PerishableItem { Name = "+5 Dexterity Vest", SellIn = 0, Quality = 6 };
+            var item = new PerishableItem { SellIn = 0, Quality = 6 };
 
             item.Update();
 
@@ -41,7 +41,7 @@ namespace GildedRose.Tests
         [Test]
         public void StandardItemQualityIsNeverNegative()
         {
-            var item = new PerishableItem { Name = "+5 Dexterity Vest", SellIn = 10, Quality = 0 };
+            var item = new PerishableItem { SellIn = 10, Quality = 0 };
 
             item.Update();
         
