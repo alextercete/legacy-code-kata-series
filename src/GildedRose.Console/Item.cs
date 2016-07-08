@@ -1,6 +1,6 @@
 namespace GildedRose.Console
 {
-    public interface Item
+    public abstract class Item
     {
         string Name { get; set; }
 
@@ -8,7 +8,33 @@ namespace GildedRose.Console
 
         int Quality { get; set; }
 
-        void Update();
+        public abstract void Update();
+
+        protected bool HasPassedSellByDate()
+        {
+            return this.SellIn < 0;
+        }
+
+        protected void IncreaseQuality()
+        {
+            if (this.Quality < 50)
+            {
+                this.Quality = this.Quality + 1;
+            }
+        }
+
+        protected void DecreaseSellIn()
+        {
+            this.SellIn = this.SellIn - 1;
+        }
+
+        protected void DecreaseQuality()
+        {
+            if (this.Quality > 0)
+            {
+                this.Quality = this.Quality - 1;
+            }
+        }
     }
 
     public class AgeingItem : Item
@@ -17,7 +43,7 @@ namespace GildedRose.Console
         public int SellIn { get; set; }
         public int Quality { get; set; }
 
-        public void Update()
+        public override void Update()
         {
             IncreaseQuality();
             DecreaseSellIn();
@@ -27,24 +53,6 @@ namespace GildedRose.Console
                 IncreaseQuality();
             }
         }
-
-        private bool HasPassedSellByDate()
-        {
-            return this.SellIn < 0;
-        }
-
-        private void IncreaseQuality()
-        {
-            if (this.Quality < 50)
-            {
-                this.Quality = this.Quality + 1;
-            }
-        }
-
-        private void DecreaseSellIn()
-        {
-            this.SellIn = this.SellIn - 1;
-        }
     }
 
     public class DesirableEventItem : Item
@@ -53,7 +61,7 @@ namespace GildedRose.Console
         public int SellIn { get; set; }
         public int Quality { get; set; }
 
-        public void Update()
+        public override void Update()
         {
             // Tickets are more valuable when an event is closer
             if (this.SellIn <= 10)
@@ -75,24 +83,6 @@ namespace GildedRose.Console
                 this.Quality = 0;
             }
         }
-
-        private bool HasPassedSellByDate()
-        {
-            return this.SellIn < 0;
-        }
-
-        private void IncreaseQuality()
-        {
-            if (this.Quality < 50)
-            {
-                this.Quality = this.Quality + 1;
-            }
-        }
-
-        private void DecreaseSellIn()
-        {
-            this.SellIn = this.SellIn - 1;
-        }
     }
 
     public class LegendaryItem : Item
@@ -101,7 +91,7 @@ namespace GildedRose.Console
         public int SellIn { get; set; }
         public int Quality { get; set; }
 
-        public void Update()
+        public override void Update()
         {
 
         }
@@ -113,24 +103,11 @@ namespace GildedRose.Console
         public int SellIn { get; set; }
         public int Quality { get; set; }
 
-        public void Update()
+        public override void Update()
         {
             DecreaseQuality();
             DecreaseQuality();
             DecreaseSellIn();
-        }
-
-        private void DecreaseSellIn()
-        {
-            this.SellIn = this.SellIn - 1;
-        }
-
-        private void DecreaseQuality()
-        {
-            if (this.Quality > 0)
-            {
-                this.Quality = this.Quality - 1;
-            }
         }
     }
 
@@ -140,7 +117,7 @@ namespace GildedRose.Console
         public int SellIn { get; set; }
         public int Quality { get; set; }
 
-        public void Update()
+        public override void Update()
         {
             DecreaseQuality();
             DecreaseSellIn();
@@ -148,24 +125,6 @@ namespace GildedRose.Console
             if (HasPassedSellByDate())
             {
                 DecreaseQuality();
-            }
-        }
-
-        private bool HasPassedSellByDate()
-        {
-            return this.SellIn < 0;
-        }
-
-        private void DecreaseSellIn()
-        {
-            this.SellIn = this.SellIn - 1;
-        }
-
-        private void DecreaseQuality()
-        {
-            if (this.Quality > 0)
-            {
-                this.Quality = this.Quality - 1;
             }
         }
     }
